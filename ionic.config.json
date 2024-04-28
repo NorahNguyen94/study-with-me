@@ -1,0 +1,7 @@
+{
+  "name": "study-with-me",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
