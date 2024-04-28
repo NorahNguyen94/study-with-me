@@ -1,0 +1,26 @@
+<ion-content [fullscreen]="true">
+
+  <!------- APP LOGO --------->
+  <h1>Sign In</h1>
+  <h2>Study With Me</h2>
+  <img src="../../assets/images/logo.png" alt="app-logo">
+
+  <!-----Users type username and password to log in------->
+  <ion-list>
+    <ion-item>
+      <ion-input type="text" placeholder="Username"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="password" placeholder="Password"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-checkbox labelPlacement="end" justify="start" mode="md">Remember</ion-checkbox>
+      <a href="">Forgot password?</a>
+    </ion-item>
+  </ion-list>
+
+  <!----Button to log in or sign up------>
+  <ion-button (click)="login()" expand="block">Login</ion-button>
+  <ion-button routerLink="/signup" expand="block">Create an account</ion-button>
+
+</ion-content>

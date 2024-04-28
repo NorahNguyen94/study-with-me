@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      Dashboard
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,9 +9,34 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
+      <ion-title size="large">Dashboard</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <div class="display-date">
+    <p>Today - Monday, 29 April</p>
+  </div>
+
+  <div class="course-notification">
+    <div class="item">
+      <ion-label>Interactive App Development</ion-label>
+      <div id="course-detail">
+        <div><ion-icon name="location-outline"></ion-icon> Online </div>
+        <p> Workshop </p>
+      </div>
+      <ion-icon name="time-outline"></ion-icon> 9AM - 11AM
+    </div>
+    <div class="item">
+      <ion-label>Computer System And Network</ion-label>
+      <div id="course-detail">
+        <div><ion-icon name="location-outline"></ion-icon> Building G23 2.20 </div>
+        <p> Lecture </p>
+      </div>
+      <ion-icon name="time-outline"></ion-icon> 1PM - 3PM
+    </div>
+  </div>
+  
+  <div class="display-date">
+    <p>Tommorrow - Tuesday, 30 April</p>
+  </div>
 </ion-content>

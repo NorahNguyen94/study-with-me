@@ -1,0 +1,41 @@
+ion-label {
+    display: block;
+    font-weight: bold;
+}
+
+ion-title {
+    text-align: center;
+    font-size: 24px;
+    color:rgb(1, 44, 137);
+}
+
+.course-notification {
+    margin-left: 15px;
+}
+
+#course-detail {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#course-detail p {
+    margin-right: 10px;
+    color: rgb(1, 44, 137);
+}
+
+.item {
+    margin-bottom: 20px;
+}
+
+ion-icon {
+    font-size: 18px;
+}
+
+.display-date {
+    background-color: rgb(193, 212, 228);
+    padding: 2px;
+    margin-bottom: 20px;
+    height: 50px;
+    font-weight: bold;
+}
