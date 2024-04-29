@@ -11,12 +11,9 @@ import { RouterLink, Router } from '@angular/router';
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonInput, IonList, IonItem, IonCheckbox, IonButton, RouterLink]
 })
-export class LoginPage implements OnInit {
+export class LoginPage {
 
   constructor(private router: Router) { }
-
-  ngOnInit() {
-  }
 
   login() {
     this.router.navigateByUrl('/tabs');

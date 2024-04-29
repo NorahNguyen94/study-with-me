@@ -13,4 +13,12 @@ export const routes: Routes = [
     path: 'signup',
     loadComponent: () => import('./signup/signup.page').then( m => m.SignupPage)
   },
+  {
+    path: 'course-detail',
+    loadComponent: () => import('./course-detail/course-detail.page').then( m => m.CourseDetailPage)
+  },
+  {
+    path: 'map',
+    loadComponent: () => import('./map/map.page').then( m => m.MapPage)
+  },
 ];

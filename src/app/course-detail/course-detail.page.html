@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Interactive App Development</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="/tabs/tab2"></ion-back-button>
+    </ion-buttons>
+    <p id="edit" (click)="editCourse()" slot="end">Edit</p>
+  </ion-toolbar>
+  <div class="course-info">
+    <div><ion-icon name="calendar-outline"></ion-icon> Trimester 1, 2024 </div>
+    <div><ion-icon routerLink="/map" name="location-outline"></ion-icon> Online </div>
+  </div>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="schedule">
+    <h3>Schedule</h3>
+    <ion-list>
+      <ion-item>11AM-1PM Lecture Thursday Online</ion-item>
+      <ion-item>2PM-4PM Workshop Friday G23-2.20</ion-item>
+    </ion-list>
+  </div>
+
+  <div class="assessment">
+    <div id="assessment-heading">
+      <h3>Assessment</h3>
+      <button class="clear" slot="end" (click)="addAssignment()">
+        <ion-icon name="add-outline"></ion-icon>
+      </button>
+    </div>
+    <div>
+      <div>
+        <div class="assessment-item">
+          <ion-label>Mini Test 1</ion-label>
+          <p class="percentage">10%</p>
+          <ion-checkbox justify="end"></ion-checkbox>
+        </div>
+        <p class="due-date">due on 29 Mar 2024</p>
+      </div>
+      <div>
+        <div class="assessment-item">
+          <ion-label>Mini Test 21</ion-label>
+          <p class="percentage">10%</p>
+          <ion-checkbox justify="end"></ion-checkbox>
+        </div>
+        <p class="due-date">due on 13 Apr 2024</p>
+      </div>
+      <div>
+        <div class="assessment-item">
+          <ion-label>Assignment</ion-label>
+          <p class="percentage">40%</p>
+          <ion-checkbox justify="end"></ion-checkbox>
+        </div>
+        <p class="due-date">due on 03 May 2024</p>
+      </div>
+      <div>
+        <div class="assessment-item">
+          <ion-label>Final Exam</ion-label>
+          <p class="percentage">40%</p>
+          <ion-checkbox justify="end"></ion-checkbox>
+        </div>
+        <p class="due-date">due on 17 June 2024</p>
+      </div>
+    </div>
+  </div>
+</ion-content>

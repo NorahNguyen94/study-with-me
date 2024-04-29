@@ -13,6 +13,6 @@ import { addIcons } from 'ionicons';
 })
 export class Tab1Page {
   constructor() {
-    addIcons({ locationOutline, timeOutline });
+    addIcons({ locationOutline, timeOutline }); // add icons to use them
   }
 }

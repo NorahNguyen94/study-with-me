@@ -1,0 +1,61 @@
+// ------ Course Heading CSS ----------
+.course-info {
+    font-size: 18px;
+    word-spacing: 3px;
+    margin-left: 50px;
+    padding-bottom: 20px;
+}
+
+#edit:hover {
+    color:  rgb(1, 44, 137);
+    cursor: pointer;
+}
+
+.course-info div {
+    margin-bottom: 10px;
+}
+
+
+// ------------ Schedule CSS -----------------
+h3 {
+    margin-left: 15px;
+    font-weight: bold;
+}
+
+ion-item {
+    word-spacing: 17px;
+}
+
+// ------------ Assessment CSS -----------------
+#assessment-heading {
+    display: flex;
+    justify-content: space-between;
+}
+
+ion-icon {
+    font-size: 30px;
+}
+
+.clear {
+    background-color: transparent;
+    margin-right: 10px;
+    color: rgb(1, 44, 137);
+}
+
+.assessment-item {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.assessment-item ion-label {
+    font-weight: bold;
+}
+
+.due-date {
+    margin: -4px auto 0 40px;
+}
+
+.percentage {
+    color: green;
+}

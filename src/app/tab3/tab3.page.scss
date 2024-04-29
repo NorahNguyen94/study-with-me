@@ -1,0 +1,51 @@
+ion-title {
+    text-align: center;
+    font-size: 24px;
+}
+
+ion-select {
+    width: 90%;
+    margin: 10px auto 10px auto;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    padding-right: 5px;
+    justify-content: right;
+    margin-right: 25%;
+    padding-bottom: 10px;
+}
+
+.item ion-input {
+    width: 30%;
+    border: 1px solid grey;
+    height: 10px;
+    text-align: center;
+}
+
+ion-label {
+    padding-right: 10px;
+}
+
+.course-selection {
+    background-color: rgb(193, 212, 228);
+    padding-top: 2px;
+    font-size: 18px;
+}
+
+img {
+    display: block;
+    width: 70%;
+    margin: 0 auto 0 auto;
+}
+
+h3 {
+    margin-left: 20px;
+    color: rgb(1, 44, 137);
+    font-weight: bold;
+}
+
+h6 {
+    margin-left: 15px;
+}
