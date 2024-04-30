@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonLabel, IonButton, IonInput, IonItem, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { IonContent, IonDatetime, IonLabel, IonButton, IonInput, IonItem, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { ModalController, NavParams } from '@ionic/angular/standalone';
 
 @Component({
@@ -9,7 +9,7 @@ import { ModalController, NavParams } from '@ionic/angular/standalone';
   templateUrl: './add-assignment.page.html',
   styleUrls: ['./add-assignment.page.scss'],
   standalone: true,
-  imports: [IonContent, IonButton, IonLabel, IonItem, IonInput, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [IonContent, IonDatetime, IonButton, IonLabel, IonItem, IonInput, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
 export class AddAssignmentPage implements OnInit {
 
