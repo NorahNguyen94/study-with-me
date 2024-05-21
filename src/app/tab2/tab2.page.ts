@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonHeader, IonToolbar, IonItemOptions, IonItemOption, IonItemSliding, IonTitle, IonContent, IonIcon, IonList, IonItem } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonItemOptions, IonItemOption, IonItemSliding, IonTitle, IonContent, IonIcon, IonList, IonItem, IonButtons, IonMenuButton } from '@ionic/angular/standalone';
 import { ExploreContainerComponent } from '../explore-container/explore-container.component';
 import { addOutline } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
@@ -8,13 +8,12 @@ import { RouterLink, Router } from '@angular/router';
 import { ModalController } from '@ionic/angular/standalone';
 import { EditCoursePage } from '../edit-course/edit-course.page';
 
-
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
   styleUrls: ['tab2.page.scss'],
   standalone: true,
-  imports: [RouterLink, IonHeader, NgFor, IonItemOptions, IonItemOption, IonItemSliding, IonToolbar, IonTitle, IonContent, IonList, IonItem, ExploreContainerComponent, IonIcon]
+  imports: [RouterLink, IonHeader, NgFor, IonItemOptions, IonButtons, IonMenuButton, IonItemOption, IonItemSliding, IonToolbar, IonTitle, IonContent, IonList, IonItem, ExploreContainerComponent, IonIcon]
 })
 export class Tab2Page {
 

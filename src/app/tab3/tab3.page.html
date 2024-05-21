@@ -1,49 +1,50 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Check Score
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <div class="course-selection">
-    <ion-select label="Course: " placeholder="Select a course">
-      <ion-select-option>Interactive App Development</ion-select-option>
-      <ion-select-option>Computer System and Network</ion-select-option>
-      <ion-select-option>Database Design</ion-select-option>
-    </ion-select>
-  </div>
-
-  <div class="score-filling">
-    <div class="item">
-      <ion-label>Mini Text 1</ion-label>
-      <ion-input type="text"></ion-input>
+<div class="ion-page" id="main-content">
+  <ion-content>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title size="large">Check Score</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <div class="course-selection">
+      <ion-select label="Course: " placeholder="Select a course">
+        <ion-select-option>Interactive App Development</ion-select-option>
+        <ion-select-option>Computer System and Network</ion-select-option>
+        <ion-select-option>Database Design</ion-select-option>
+      </ion-select>
     </div>
-    <div class="item">
-      <ion-label>Mini Text 2</ion-label>
-      <ion-input type="text"></ion-input>
-    </div>
-    <div class="item">
-      <ion-label>Assignment Part A</ion-label>
-      <ion-input type="text"></ion-input>
-    </div>
-    <div class="item">
-      <ion-label>Assignment Part B</ion-label>
-      <ion-input type="text"></ion-input>
-    </div>
-    <div class="item">
-      <ion-label>Final Exam</ion-label>
-      <ion-input type="text"></ion-input>
-    </div>
-    <ion-button>Check</ion-button>
-  </div>
 
-  <div class="result">
-    <h3>Result</h3>
-    <img src="../../assets/images/pie_chart.png" alt="Pie chart showing the final score percentage of the course">
-    <h6>You get 86.7% for this course. Congratulations!</h6>
-  </div>
+    <div class="score-filling">
+      <div class="item">
+        <ion-label>Mini Text 1</ion-label>
+        <ion-input type="text"></ion-input>
+      </div>
+      <div class="item">
+        <ion-label>Mini Text 2</ion-label>
+        <ion-input type="text"></ion-input>
+      </div>
+      <div class="item">
+        <ion-label>Assignment Part A</ion-label>
+        <ion-input type="text"></ion-input>
+      </div>
+      <div class="item">
+        <ion-label>Assignment Part B</ion-label>
+        <ion-input type="text"></ion-input>
+      </div>
+      <div class="item">
+        <ion-label>Final Exam</ion-label>
+        <ion-input type="text"></ion-input>
+      </div>
+      <ion-button>Check</ion-button>
+    </div>
 
+    <div class="result">
+      <h3>Result</h3>
+      <img src="../../assets/images/pie_chart.png" alt="Pie chart showing the final score percentage of the course">
+      <h6>You get 86.7% for this course. Congratulations!</h6>
+    </div>
 
-</ion-content>
+  </ion-content>
+</div>

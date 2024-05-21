@@ -1,0 +1,36 @@
+img {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+}
+
+#menu-container h5 {
+    position: relative;
+    left: 65px;
+    top: -57px;
+    font-weight: bold;
+}
+
+#menu-container {
+    height: 57px;
+}
+
+// Shadow  the menu container and pages
+ion-menu::part(backdrop) {
+    background-color: rgba(162, 179, 247, 0.5);
+}
+
+// ion-menu::part(container) {
+//     border-radius: 0 20px 20px 0;
+//     box-shadow: 4px 0px 16px rgba(85, 109, 245, 0.18);
+// }
+
+#menu-list ion-item:hover {
+    color: rgb(74, 136, 145);
+    transition: color 0.3s ease;
+}
+
+#menu-list ion-icon {
+    color: rgb(17, 75, 75);
+    margin-right: 20px;
+}
