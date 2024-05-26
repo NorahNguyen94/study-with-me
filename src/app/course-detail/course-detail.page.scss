@@ -3,11 +3,11 @@
     font-size: 18px;
     word-spacing: 3px;
     margin-left: 50px;
-    padding-bottom: 20px;
+    padding-bottom: 15px;
 }
 
 #edit:hover {
-    color:  rgb(1, 44, 137);
+    color: rgb(1, 44, 137);
     cursor: pointer;
 }
 
@@ -15,6 +15,10 @@
     margin-bottom: 10px;
 }
 
+.description {
+    margin: 0 auto 15px 15px;
+    line-height: 1.4;
+}
 
 // ------------ Schedule CSS -----------------
 h3 {
@@ -23,7 +27,8 @@ h3 {
 }
 
 ion-item {
-    word-spacing: 17px;
+    word-spacing: 9px;
+    text-wrap: nowrap;
 }
 
 // ------------ Assessment CSS -----------------
@@ -33,22 +38,24 @@ ion-item {
 }
 
 ion-icon {
-    font-size: 30px;
+    font-size: 25px;
+    color: rgb(17, 75, 75);
 }
 
 .clear {
     background-color: transparent;
     margin-right: 10px;
-    color: rgb(1, 44, 137);
+    color: rgb(17, 75, 75);
 }
 
 .assessment-item {
     display: flex;
-    justify-content: space-around;
     align-items: center;
+    padding: 13px;
 }
 
 .assessment-item ion-label {
+    margin-left: 15px;
     font-weight: bold;
 }
 
@@ -58,4 +65,13 @@ ion-icon {
 
 .percentage {
     color: green;
+    position: absolute;
+    left: 220px;
 }
+
+ion-checkbox {
+    position: absolute;
+    left: 300px;
+}
+
+

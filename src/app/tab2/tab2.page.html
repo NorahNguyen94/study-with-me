@@ -6,18 +6,25 @@
           <ion-menu-button></ion-menu-button>
         </ion-buttons>
         <ion-title size="large">Course</ion-title>
+        <button (click)="addCourse()" class="clear" slot="end">
+          <ion-icon name="add-outline"></ion-icon>
+        </button>
       </ion-toolbar>
     </ion-header>
 
     <ion-list>
       <ion-item-sliding *ngFor="let course of courses; index as i">
-        <ion-item routerLink="/course-detail">
+        <ion-item (click)="viewCourseDetail(course)">
           {{ course.name }}
         </ion-item>
 
         <ion-item-options>
-          <ion-item-option>Edit</ion-item-option>
-          <ion-item-option color="danger" (click)="deleteCourse(i)">Delete</ion-item-option>
+          <ion-item-option>
+            <ion-icon name="create-outline"></ion-icon>
+          </ion-item-option>
+          <ion-item-option color="danger" (click)="deleteCourse(i)">
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-item-option>
         </ion-item-options>
       </ion-item-sliding>
     </ion-list>

@@ -1,19 +1,22 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>Add an assignment</ion-title>
+    <button class="clear" slot="end" (click)="closeModal()">
+      <ion-icon name="close-outline"></ion-icon>
+    </button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-item>
-    <ion-input label="Label" type="text" [(ngModel)]="assignment.name"></ion-input>
+    <ion-input label="Label" type="text" [(ngModel)]="assessment.label"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-input label="Weight (%)" type="number" [(ngModel)]="assignment.weight"></ion-input>
+    <ion-input label="Weight (%)" type="number" [(ngModel)]="assessment.weight"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label>Due date</ion-label>
-    <ion-input type="date" [(ngModel)]="assignment.due_date"></ion-input>
+    <ion-datetime [(ngModel)]="assessment.due_date"></ion-datetime>
   </ion-item>
-  <ion-button class="doneButton" expand="full" (click)="closemodal()">Done</ion-button>
+  <ion-button class="doneButton" expand="full" (click)="addAssignment()">Done</ion-button>
 </ion-content>

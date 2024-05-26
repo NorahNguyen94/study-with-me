@@ -9,41 +9,27 @@
       </ion-toolbar>
     </ion-header>
     <div class="course-selection">
-      <ion-select label="Course: " placeholder="Select a course">
-        <ion-select-option>Interactive App Development</ion-select-option>
-        <ion-select-option>Computer System and Network</ion-select-option>
-        <ion-select-option>Database Design</ion-select-option>
+      <ion-select [(ngModel)]="selectedCourse" (ionChange)="courseChange()" label="Course: "
+        placeholder="Select a course">
+        <ion-select-option *ngFor="let course of courses">{{course.name}}</ion-select-option>
       </ion-select>
     </div>
 
-    <div class="score-filling">
-      <div class="item">
-        <ion-label>Mini Text 1</ion-label>
-        <ion-input type="text"></ion-input>
+    <div *ngIf="selectedCourse">
+      <div class="score-filling">
+        <div *ngFor="let assessment of selectedCourse.assessments; index as i" class="item">
+          <ion-label> {{assessment.label}} </ion-label>
+          <ion-input type="text" [(ngModel)]="selectedCourse.assessments[i].userInput" placeholder="e.g. 4/5"></ion-input>
+        </div>
+        <ion-button (click)="checkScore()">Check</ion-button>
       </div>
-      <div class="item">
-        <ion-label>Mini Text 2</ion-label>
-        <ion-input type="text"></ion-input>
-      </div>
-      <div class="item">
-        <ion-label>Assignment Part A</ion-label>
-        <ion-input type="text"></ion-input>
-      </div>
-      <div class="item">
-        <ion-label>Assignment Part B</ion-label>
-        <ion-input type="text"></ion-input>
-      </div>
-      <div class="item">
-        <ion-label>Final Exam</ion-label>
-        <ion-input type="text"></ion-input>
-      </div>
-      <ion-button>Check</ion-button>
-    </div>
 
-    <div class="result">
-      <h3>Result</h3>
-      <img src="../../assets/images/pie_chart.png" alt="Pie chart showing the final score percentage of the course">
-      <h6>You get 86.7% for this course. Congratulations!</h6>
+      <div *ngIf="result" class="result">
+        <h3>Result</h3>
+        <img src="../../assets/images/pie_chart.png" alt="Pie chart showing the final score percentage of the course">
+        <h6>You get <span>{{result}}% ({{grade}})</span> for this course.</h6>
+        <h6 *ngIf="result >= 75" id="congrats-text">Congratulations!</h6>
+      </div>
     </div>
 
   </ion-content>

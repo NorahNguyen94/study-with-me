@@ -1,14 +1,16 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Interactive App Development</ion-title>
+    <ion-title>{{ course.name }}</ion-title>
     <ion-buttons slot="start">
       <ion-back-button default-href="/tabs/tab2"></ion-back-button>
     </ion-buttons>
     <p id="edit" (click)="editCourse()" slot="end">Edit</p>
   </ion-toolbar>
-  <div class="course-info">
-    <div><ion-icon name="calendar-outline"></ion-icon> Trimester 1, 2024 </div>
-    <div><ion-icon routerLink="/map" name="location-outline"></ion-icon> Online </div>
+  <div>
+    <div class="course-info"><ion-icon name="calendar-outline"></ion-icon> {{ course.trimester }} </div>
+    <div class="course-info"><ion-icon routerLink="/map" name="location-outline"></ion-icon> {{ course.location }}
+    </div>
+    <p class="description">{{ course.description }}</p>
   </div>
 </ion-header>
 
@@ -16,8 +18,8 @@
   <div class="schedule">
     <h3>Schedule</h3>
     <ion-list>
-      <ion-item>11AM-1PM Lecture Thursday Online</ion-item>
-      <ion-item>2PM-4PM Workshop Friday G23-2.20</ion-item>
+      <ion-item *ngFor="let schedule of course.schedules">{{getTimeRange(schedule.datetime)}} {{ schedule.type }} {{
+        getDay(schedule.datetime)}} {{ schedule.mode }}</ion-item>
     </ion-list>
   </div>
 
@@ -29,37 +31,13 @@
       </button>
     </div>
     <div>
-      <div>
+      <div *ngFor="let assessment of course.assessments; index as j">
         <div class="assessment-item">
-          <ion-label>Mini Test 1</ion-label>
-          <p class="percentage">10%</p>
-          <ion-checkbox justify="end"></ion-checkbox>
+          <ion-label (click)="editAssignment(j)">{{ assessment.label }}</ion-label>
+          <p class="percentage">{{ assessment.weight }}%</p>
+          <ion-checkbox [(ngModel)]="assessment.checked" justify="end"></ion-checkbox>
         </div>
-        <p class="due-date">due on 29 Mar 2024</p>
-      </div>
-      <div>
-        <div class="assessment-item">
-          <ion-label>Mini Test 21</ion-label>
-          <p class="percentage">10%</p>
-          <ion-checkbox justify="end"></ion-checkbox>
-        </div>
-        <p class="due-date">due on 13 Apr 2024</p>
-      </div>
-      <div>
-        <div class="assessment-item">
-          <ion-label>Assignment</ion-label>
-          <p class="percentage">40%</p>
-          <ion-checkbox justify="end"></ion-checkbox>
-        </div>
-        <p class="due-date">due on 03 May 2024</p>
-      </div>
-      <div>
-        <div class="assessment-item">
-          <ion-label>Final Exam</ion-label>
-          <p class="percentage">40%</p>
-          <ion-checkbox justify="end"></ion-checkbox>
-        </div>
-        <p class="due-date">due on 17 June 2024</p>
+        <p class="due-date">due on {{ getDateOnly(assessment.due_date) | date: 'dd/MM/yyyy'}}</p>
       </div>
     </div>
   </div>

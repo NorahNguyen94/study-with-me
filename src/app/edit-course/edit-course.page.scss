@@ -1,9 +1,39 @@
-h3, h5 {
+* {
+    margin-left: 0;
+}
+
+h3 {
     margin-left: 15px;
     font-weight: bold;
+    display: inline;
+}
+
+.heading {
+    display: flex;
+    justify-content: space-between;
 }
 
 ion-title {
     text-align: center;
     font-size: 24px;
+}
+
+.doneButton {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.clear {
+    background-color: transparent;
+    margin-right: 10px;
+    color: rgb(17, 75, 75);
+}
+
+.clear ion-icon {
+    font-size: 25px;
+}
+
+#trash-icon {
+    color: #940000;
 }

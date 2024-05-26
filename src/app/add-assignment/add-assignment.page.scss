@@ -1,3 +1,7 @@
+* {
+    margin-left: 0;
+}
+
 ion-title {
     text-align: center;
     font-size: 24px;
@@ -6,10 +10,21 @@ ion-title {
 ion-label {
     text-wrap: nowrap;
     margin-right: 20px;
+    align-self: baseline;
 }
 
 .doneButton {
     position: absolute;
     bottom: 0;
     width: 100%;
+}
+
+.clear {
+    background-color: transparent;
+    margin-right: 10px;
+    color: rgb(17, 75, 75);
+}
+
+.clear ion-icon {
+    font-size: 25px;
 }
