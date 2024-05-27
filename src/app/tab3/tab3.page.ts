@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { IonHeader, IonSelectOption, IonButtons, IonMenuButton, IonButton, IonInput, IonLabel, IonToolbar, IonSelect, IonTitle, IonContent } from '@ionic/angular/standalone';
 import { ExploreContainerComponent } from '../explore-container/explore-container.component';
 import { NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { StorageServiceService } from '../storage-service.service';
+import { Chart } from 'chart.js/auto';
 
 @Component({
   selector: 'app-tab3',
@@ -11,60 +13,47 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [NgFor, NgIf, FormsModule, IonHeader, IonButton, IonButtons, IonMenuButton, IonSelectOption, IonInput, IonLabel, IonSelect, IonToolbar, IonTitle, IonContent, ExploreContainerComponent],
 })
-export class Tab3Page {
+export class Tab3Page implements OnInit, AfterViewInit {
+  @ViewChild('graph', { static: true }) graph!: ElementRef<HTMLCanvasElement>;
+  chart!: Chart;
 
-  assignments1: any = [
-    { label: 'Mini Test 1', weight: '10', due_date: '27/03/2024' },
-    { label: 'Mini Test 2', weight: '10', due_date: '13/04/2024' },
-    { label: 'Assignment Part A', weight: '20', due_date: '25/04/2024' },
-    { label: 'Assignment Part B', weight: '20', due_date: '03/05/2024' },
-  ];
-  assignments2: any = [
-    { label: 'Mini Test 11', weight: '10', due_date: '27/03/2024' },
-    { label: 'Mini Test 2w', weight: '10', due_date: '13/04/2024' },
-    { label: 'Assignment Part A', weight: '20', due_date: '25/04/2024' },
-    { label: 'Assignment Part B', weight: '20', due_date: '03/05/2024' },
-  ];
-
-  courses =
-    [{
-      name: "Computer System",
-      trimester: "Trimester 1, 2024",
-      location: "Building 23 2.22",
-      description: "It provides students knowledge about modern technologies for app development.",
-      schedule: [
-        {
-          type: "Lecture",
-          datetime: "",
-          frequency: "",
-          mode: "Online"
-        },
-      ],
-      assessments: this.assignments1
-    },
-    {
-      name: "Interactive App Development",
-      trimester: "Trimester 1, 2024",
-      location: "Building 23 2.22",
-      description: "It provides students knowledge about modern technologies for app development.",
-      schedule: [
-        {
-          type: "Lecture",
-          datetime: "",
-          frequency: "",
-          mode: "Online"
-        },
-      ],
-      assessments: this.assignments2
-    }
-
-    ]
-
+  courses: any;
   selectedCourse: any;
-  result: any;
+  userInput = new Array(); // array storing scores that user enter
+  result: any = 0;
   grade: any;
+  chartConfig: any = { // Chart configuration
+    type: 'pie',
+    data: {
+      labels: ['Achieved', 'Remaining'],
+      datasets: [
+        {
+          label: 'Score acheived',
+          data: [this.result, 100 - this.result],
+          // backgroundColor: ['#4caf50', '#f44336'],
+          // hoverBackgroundColor: ['#66bb6a', '#ef5350']
+        }
+      ]
+    },
+    options: {
+      responsive: true
+    }
+  }
 
-  constructor() { }
+  constructor(private storage: StorageServiceService) { }
+
+  ngAfterViewInit() {
+    // show the chart
+    if (this.chart) {
+      this.chart.destroy();
+    }
+    this.chart = new Chart(this.graph.nativeElement, this.chartConfig);
+
+  }
+
+  async ngOnInit(): Promise<void> {
+    this.courses = await this.storage.get('courses');
+  }
 
   /*
   ----- When user select a course from the select tag ----
@@ -74,9 +63,8 @@ export class Tab3Page {
     this.result = null;
 
     // find index of the selected course in the course list to show assessments of it in html template
-    const index = this.courses.findIndex(course => course.name === this.selectedCourse);
+    const index = this.courses.findIndex((course: any) => course.name === this.selectedCourse);
     if (index !== -1) {
-      console.log(`Selected course index: ${index}`);
       this.selectedCourse = this.courses[index];
     } else {
       console.log('Course not found.');
@@ -96,19 +84,20 @@ export class Tab3Page {
     let totalScore = 0;
 
     // iterate values input to calculate total score and total weight
-    this.selectedCourse.assessments.forEach((assessment: { userInput: { split: (arg0: string) => { (): any; new(): any; map: { (arg0: NumberConstructor): [any, any]; new(): any; }; }; }; weight: number; }) => {
-      if (assessment.userInput) {
-        const [score, maxScore] = assessment.userInput.split('/').map(Number);
+    if (this.userInput) {
+      for (let i = 0; i < this.userInput.length; i++) {
+        const [score, maxScore] = this.userInput[i].split('/').map(Number);
         if (!isNaN(score) && !isNaN(maxScore) && maxScore !== 0) {
           const percentage = (score / maxScore) * 100;
-          totalScore += Number((percentage * assessment.weight)) / 100;
-          totalWeight += Number(assessment.weight);
+          totalScore += Number((percentage * this.selectedCourse.assessments[i].weight)) / 100;
+          totalWeight += Number(this.selectedCourse.assessments[i].weight);
         }
       }
-    });
+    }
 
     this.result = (totalWeight > 0 ? (totalScore / totalWeight) * 100 : 0).toFixed(2);
 
+    this.updateChart(this.result);
     // Check the grade based on the score (HD, D, C, P, F) 
     switch (true) {
       case (this.result >= 85): this.grade = "HD"; break;
@@ -116,6 +105,14 @@ export class Tab3Page {
       case (this.result < 75 && this.result >= 65): this.grade = "C"; break;
       case (this.result < 65 && this.result >= 50): this.grade = "P"; break;
       case (this.result < 50): this.grade = "F"; break;
+    }
+  }
+
+  updateChart(result: any) {
+    const gpa = parseFloat(result);
+    if (this.chart) {
+      this.chart.data.datasets[0].data = [gpa, 100 - gpa];
+      this.chart.update();
     }
   }
 }

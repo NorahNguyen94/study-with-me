@@ -19,17 +19,17 @@
       <div class="score-filling">
         <div *ngFor="let assessment of selectedCourse.assessments; index as i" class="item">
           <ion-label> {{assessment.label}} </ion-label>
-          <ion-input type="text" [(ngModel)]="selectedCourse.assessments[i].userInput" placeholder="e.g. 4/5"></ion-input>
+          <ion-input type="text" [(ngModel)]="userInput[i]" placeholder="e.g. 4/5"></ion-input>
         </div>
         <ion-button (click)="checkScore()">Check</ion-button>
       </div>
+    </div>
 
-      <div *ngIf="result" class="result">
-        <h3>Result</h3>
-        <img src="../../assets/images/pie_chart.png" alt="Pie chart showing the final score percentage of the course">
-        <h6>You get <span>{{result}}% ({{grade}})</span> for this course.</h6>
-        <h6 *ngIf="result >= 75" id="congrats-text">Congratulations!</h6>
-      </div>
+    <canvas #graph height="200"></canvas>
+    <div *ngIf="result" class="result">
+      <h3>Result</h3>
+      <h6>You get <span>{{result}}% ({{grade}})</span> for this course.</h6>
+      <h6 *ngIf="result >= 75" id="congrats-text">Congratulations!</h6>
     </div>
 
   </ion-content>

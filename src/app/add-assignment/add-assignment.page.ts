@@ -31,7 +31,6 @@ export class AddAssignmentPage implements OnInit {
   // add assignment and close modal when user hits the Done button
   addAssignment() {
     this.modalcontroller.dismiss(this.assessment);
-    console.log(this.assessment);
   }
 
   // only close modal

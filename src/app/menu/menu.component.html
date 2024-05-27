@@ -1,15 +1,15 @@
 <ion-menu contentId="main-content">
   <ion-header>
     <ion-toolbar id="menu-container">
-      <img src="../../assets/images/avatar.avif" alt="Avatar">
-      <h5>Ngoc Nhu</h5>
+      <img src="{{imageFile}}" alt="Avatar">
+      <h5>{{username}}</h5>
     </ion-toolbar>
   </ion-header>
   <ion-content>
     <ion-list id="menu-list">
       <ion-item (click)="directPage('/tabs/tab1')">
         <ion-icon name="home-outline" slot="start"></ion-icon>
-        <ion-label>Home</ion-label>
+        <ion-label>Dashboard</ion-label>
       </ion-item>
       <ion-item (click)="directPage('/tabs/tab2')">
         <ion-icon name="book-outline" slot="start"></ion-icon>
@@ -20,5 +20,10 @@
         <ion-label>Check Score</ion-label>
       </ion-item>
     </ion-list>
+    <div class="file-input">
+      <label for="file">Change avatar image</label>
+      <input #fileInput id="file" class="file" type="file" accept="image/*"
+        (change)="imageSelected(fileInput.files)" multiple>
+    </div>
   </ion-content>
 </ion-menu>

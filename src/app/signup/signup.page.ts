@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonInput, IonList, IonItem, IonCheckbox, IonButton } from '@ionic/angular/standalone';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
+import { StorageServiceService } from '../storage-service.service';
 
 @Component({
   selector: 'app-signup',
@@ -11,11 +12,29 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonInput, IonList, IonItem, IonCheckbox, IonButton, RouterLink]
 })
-export class SignupPage implements OnInit {
+export class SignupPage {
 
-  constructor() { }
+  username!: string;
+  password!: string;
+  passwordRetyped!: string;
+  validator = true;
 
-  ngOnInit() {
+  constructor(private storage: StorageServiceService, private router: Router) { }
+
+  async signup(username: string, password: string, passretyped: string) {
+    if (username !== null && password != null && password === passretyped) {
+      await this.storage.set('username', username);
+      await this.storage.set('password', password);
+      this.router.navigateByUrl('/');
+    }
+    else {
+      this.validator = false;
+    }
   }
 
+  resetData() {
+    this.username = '';
+    this.password = '';
+    this.passwordRetyped = '';
+  }
 }

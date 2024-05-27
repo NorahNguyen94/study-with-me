@@ -6,36 +6,36 @@ import { Storage } from '@ionic/storage-angular';
 })
 export class StorageServiceService {
 
-  private _storage: Storage | null = null;
-
   constructor(private storage: Storage) {
-    this.init();
-  }
-
-  async init() {
-    const storage = await this.storage.create();
-    this._storage = storage;
   }
 
   public async set(key: string, value: any) {
-    await this._storage?.set(key, value);
+    await this.storage?.set(key, value);
   }
 
   public async get(key: string) {
-    let value = await this._storage?.get(key);
+    let value = await this.storage?.get(key);
     return value;
   }
 
   public async remove(key: string) {
-    await this._storage?.remove(key);
+    await this.storage?.remove(key);
   }
 
   public async clear() {
-    await this._storage?.clear();
+    await this.storage?.clear();
   }
 
   public async keys(key: string) {
-    let value = await this._storage?.keys();
+    let value = await this.storage?.keys();
     return value;
+  }
+
+  public async updateCourseStorage(course: any, courses: any) {
+    const index = courses.findIndex((object: any) => object.name === course.name);
+    if (index === -1) return;
+    courses[index] = course;
+    console.log(courses[index]);
+    await this.storage.set('courses', courses);
   }
 }

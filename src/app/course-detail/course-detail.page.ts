@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonCheckbox, IonLabel, IonIcon, IonList, IonItem, IonBackButton, IonButtons, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
@@ -8,6 +8,8 @@ import { ModalController } from '@ionic/angular/standalone';
 import { AddAssignmentPage } from '../add-assignment/add-assignment.page';
 import { EditCoursePage } from '../edit-course/edit-course.page';
 import { RouterLink, Router, ActivatedRoute } from '@angular/router';
+import { StorageServiceService } from '../storage-service.service';
+import { DateFormatService } from '../date-format.service';
 
 @Component({
   selector: 'app-course-detail',
@@ -16,33 +18,12 @@ import { RouterLink, Router, ActivatedRoute } from '@angular/router';
   standalone: true,
   imports: [IonContent, RouterLink, IonCheckbox, IonLabel, IonList, IonItem, IonIcon, IonButtons, IonBackButton, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
-export class CourseDetailPage {
+export class CourseDetailPage implements OnInit {
 
-  // assignments: any = [
-  //   { label: 'Mini Test 1', weight: '10', due_date: '27/03/2024' },
-  //   { label: 'Mini Test 2', weight: '10', due_date: '13/04/2024' },
-  //   { label: 'Assignment Part A', weight: '20', due_date: '25/04/2024' },
-  //   { label: 'Assignment Part B', weight: '20', due_date: '03/05/2024' },
-  // ];
-
-  // course = {
-  //   name: "Interactive App Development",
-  //   trimester: "Trimester 1, 2024",
-  //   location: "Building 23 2.22",
-  //   description: "It provides students knowledge about modern technologies for app development.",
-  //   schedule: [
-  //     { 
-  //       type: "Lecture",
-  //       datetime: new Date().toISOString(), 
-  //       frequency: "",
-  //       mode: "Online" 
-  //     }
-  //   ],
-  //   assessments: this.assignments
-  // }
   course: any;
+  courses: any[] = [];
 
-  constructor(public router: Router, private modalController: ModalController, private route: ActivatedRoute) {
+  constructor(public router: Router, private modalController: ModalController, private route: ActivatedRoute, private storage: StorageServiceService, private date: DateFormatService) {
     addIcons({ calendarOutline, locationOutline, addOutline });
 
     // Get course object passed by router
@@ -50,27 +31,38 @@ export class CourseDetailPage {
     if (navigation?.extras?.state) {
       this.course = navigation.extras.state['course'];
     }
-    console.log(this.course);
+  }
+
+  async ngOnInit(): Promise<void> {
+    this.courses = await this.storage.get('courses');
+  }
+
+  // direct the page to show the map
+  showMap(location: string) {
+    if (location == 'Online' || location == 'online') return;
+    else {
+      this.router.navigate(['/map'], { state: { location } });
+    }
   }
 
   // get day value for the corresponding date
   getDay(dateStr: string) {
-    const date = new Date(dateStr);
-    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    return days[date.getDay()];
+    return this.date.getDay(dateStr);
   }
 
   // get time range for each class
   getTimeRange(dateStr: string) {
-    const date = new Date(dateStr);
-    const startTime = String(date.getHours()).padStart(2, '0') + ':' + String(date.getMinutes()).padStart(2, '0');
-    const endTime = String(date.getHours() + 2).padStart(2, '0') + ':' + String(date.getMinutes()).padStart(2, '0');
-    return startTime + '-' + endTime;
+    return this.date.getTimeRange(dateStr);
   }
 
   // get date without time
   getDateOnly(dateStr: string) {
-    return dateStr.split('T')[0];
+    return this.date.getDateOnly(dateStr);
+  }
+
+  // update value of checked varibale of checkbox
+  updateCheckBox() {
+    this.storage.updateCourseStorage(this.course, this.courses);
   }
 
   // -------- Add new assignment into the assignment list by viewing a modal -----------
@@ -82,7 +74,8 @@ export class CourseDetailPage {
     modal.onDidDismiss()
       .then((retval: any) => {
         if (retval.data !== undefined) {
-          this.course.assessments.push(retval.data)
+          this.course.assessments.push(retval.data);
+          this.storage.updateCourseStorage(this.course, this.courses);
         }
       });
     modal.present();
@@ -105,6 +98,7 @@ export class CourseDetailPage {
       .then((retval: any) => {
         if (retval.data !== undefined) {
           this.course = retval.data;
+          this.storage.updateCourseStorage(this.course, this.courses);
         }
       });
     modal.present();
@@ -120,8 +114,10 @@ export class CourseDetailPage {
       .then((retval: any) => {
         if (retval.data !== undefined) {
           this.course.assessments[i] = retval.data;
+          this.storage.updateCourseStorage(this.course, this.courses);
         }
       });
     modal.present();
   }
+
 }

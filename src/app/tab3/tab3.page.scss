@@ -25,7 +25,7 @@ ion-select {
 }
 
 ion-label {
-    padding-right: 10px;
+    padding-right: 15px;
 }
 
 .course-selection {
@@ -65,4 +65,8 @@ span {
 #congrats-text {
     color: rgb(9 103 103);
     font-weight: bold;
+}
+
+canvas {
+    margin-top: 25px;
 }

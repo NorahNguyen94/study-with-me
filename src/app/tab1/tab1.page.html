@@ -10,30 +10,35 @@
     </ion-header>
 
     <div class="display-date">
-      <p>Today - Monday, 29 April</p>
+      <p>Today - {{ todayDate }}</p>
     </div>
 
-    <div class="course-notification">
-      <div class="item">
-        <ion-label>Interactive App Development</ion-label>
+    <div *ngIf="todayClasses" class="course-notification">
+      <div *ngFor="let class of todayClasses; index as i" class="item">
+        <ion-label> {{ todayClassNames[i] }}</ion-label>
         <div id="course-detail">
-          <div><ion-icon name="location-outline"></ion-icon> Online </div>
-          <p> Workshop </p>
+          <div><ion-icon name="location-outline"></ion-icon> {{ todayClassLocations[i]}} </div>
+          <p> {{class.type}} </p>
         </div>
-        <ion-icon name="time-outline"></ion-icon> 9AM - 11AM
-      </div>
-      <div class="item">
-        <ion-label>Computer System And Network</ion-label>
-        <div id="course-detail">
-          <div><ion-icon name="location-outline"></ion-icon> Building G23 2.20 </div>
-          <p> Lecture </p>
-        </div>
-        <ion-icon name="time-outline"></ion-icon> 1PM - 3PM
+        <ion-icon name="time-outline"></ion-icon> {{getTimeRange(class.datetime)}}
       </div>
     </div>
+    <p class="noClass" *ngIf="todayClasses.length === 0">There is no class today.</p>
 
     <div class="display-date">
-      <p>Tommorrow - Tuesday, 30 April</p>
+      <p>Tommorrow - {{ tomorrowDate}}</p>
+    </div>
+
+    <div *ngIf="tomorrowClasses" class="course-notification">
+      <div *ngFor="let class of tomorrowClasses; index as i" class="item">
+        <ion-label> {{ tomorrowClassNames[i] }}</ion-label>
+        <div id="course-detail">
+          <div><ion-icon name="location-outline"></ion-icon> {{ tomorrowClassLocations[i]}} </div>
+          <p> {{class.type}} </p>
+        </div>
+        <ion-icon name="time-outline"></ion-icon> {{getTimeRange(class.datetime)}}
+      </div>
+      <p class="noClass" *ngIf="tomorrowClasses.length === 0">There is no class today.</p>
     </div>
   </ion-content>
 </div>

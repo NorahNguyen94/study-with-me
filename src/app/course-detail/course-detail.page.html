@@ -8,7 +8,8 @@
   </ion-toolbar>
   <div>
     <div class="course-info"><ion-icon name="calendar-outline"></ion-icon> {{ course.trimester }} </div>
-    <div class="course-info"><ion-icon routerLink="/map" name="location-outline"></ion-icon> {{ course.location }}
+    <div class="course-info" (click)="showMap(course.location)"><ion-icon name="location-outline"></ion-icon> {{
+      course.location }}
     </div>
     <p class="description">{{ course.description }}</p>
   </div>
@@ -35,7 +36,7 @@
         <div class="assessment-item">
           <ion-label (click)="editAssignment(j)">{{ assessment.label }}</ion-label>
           <p class="percentage">{{ assessment.weight }}%</p>
-          <ion-checkbox [(ngModel)]="assessment.checked" justify="end"></ion-checkbox>
+          <ion-checkbox [(ngModel)]="assessment.checked" (ionChange)="updateCheckBox()" justify="end"></ion-checkbox>
         </div>
         <p class="due-date">due on {{ getDateOnly(assessment.due_date) | date: 'dd/MM/yyyy'}}</p>
       </div>

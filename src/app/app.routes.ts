@@ -21,4 +21,8 @@ export const routes: Routes = [
     path: 'map',
     loadComponent: () => import('./map/map.page').then( m => m.MapPage)
   },
+  {
+    path: 'splash-screen',
+    loadComponent: () => import('./splash-screen/splash-screen.page').then( m => m.SplashScreenPage)
+  },
 ];

@@ -24,20 +24,12 @@ export class EditCoursePage implements OnInit {
       [
         {
           type: '',
-          datetime: '',
+          datetime: new Date().toISOString(),
           frequency: '',
           mode: ''
         }
       ],
-    assessments:
-      [
-        {
-          label: '',
-          weight: '',
-          due_date: '',
-          checked: false
-        }
-      ]
+    assessments: []
   };
 
   scheduleTypes = ['Lecture', 'Workshop', 'Lab', 'Common Time', 'Seminar'];
@@ -51,12 +43,14 @@ export class EditCoursePage implements OnInit {
   }
 
   ngOnInit() {
-    this.course.name = this.navParams.get('name');
-    this.course.trimester = this.navParams.get('trimester');
-    this.course.location = this.navParams.get('location');
-    this.course.description = this.navParams.get('description');
-    this.course.schedules = this.navParams.get('schedules');
-    this.course.assessments = this.navParams.get('assessments');
+    if(this.navParams.get('name')) {
+      this.course.name = this.navParams.get('name');
+      this.course.trimester = this.navParams.get('trimester');
+      this.course.location = this.navParams.get('location');
+      this.course.description = this.navParams.get('description');
+      this.course.schedules = this.navParams.get('schedules');
+      this.course.assessments = this.navParams.get('assessments');
+    }
   }
 
   // Only close the modal
@@ -66,7 +60,6 @@ export class EditCoursePage implements OnInit {
 
   // Add or edit course and close modal
   addCourse() {
-    console.log(this.course);
     this.modalcontroller.dismiss(this.course);
   }
 
@@ -74,7 +67,7 @@ export class EditCoursePage implements OnInit {
     this.course.schedules.push(
       {
         type: '',
-        datetime: '',
+        datetime: new Date().toISOString(),
         frequency: '',
         mode: ''
       });
