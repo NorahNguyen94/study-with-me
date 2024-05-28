@@ -35,7 +35,6 @@ export class StorageServiceService {
     const index = courses.findIndex((object: any) => object.name === course.name);
     if (index === -1) return;
     courses[index] = course;
-    console.log(courses[index]);
     await this.storage.set('courses', courses);
   }
 }
