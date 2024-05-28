@@ -27,11 +27,11 @@ export class LoginPage implements OnInit {
     this.password = await this.storage.get('password');
   }
   login(username: string, password: string) {
-    if(username === this.username && password === this.password) {
-      this.router.navigateByUrl('/splash-screen');
-    }
-    else {
-      this.checkUser = false;
-    }
+    // if(username === this.username && password === this.password) {
+    this.router.navigateByUrl('/splash-screen');
+    // }
+    // else {
+    //   this.checkUser = false;
+    // }
   }
 }
