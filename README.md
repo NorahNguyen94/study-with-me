@@ -30,7 +30,7 @@ It provides a platform where students can manage courses, assessments, class sch
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/yourusername/student-grade-management-system.git
+   git clone https://github.com/NorahNguyen94/study-with-me.git
 ## 💻 Usage
 
 ## 📸 Screenshots
