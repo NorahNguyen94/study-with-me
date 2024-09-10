@@ -11,7 +11,7 @@ It provides a platform where students can manage courses, assessments, class sch
 - [📸 Screenshots](#screenshots)
 - [📬 Contact](#contact)
 
-## ✨ Features
+## ✨ Features (#Features)
 - **User Authentication:** Login function with password-based access control for students.
 - **Course Management:** users can add, edit, and delete courses with essential details such as course name, class location, …
 - **Schedule Tracking:** the app shows the study schedule, the assignments, workshops and exercises due for the day as well as the upcoming day.
