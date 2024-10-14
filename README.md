@@ -4,11 +4,11 @@ The mobile app aims to assist students in organising their study schedules more 
 It provides a platform where students can manage courses, assessments, class schedules and study tasks, therefore, enabling students to keep track and take control of their learning journey.
 
 ## Table of Contents
-- [✨ Features](#features)
-- [🛠 Technologies Used](#technologies-used)
-- [🚀 Installation](#installation)
-- [📸 Screenshots](#screenshots)
-- [📬 Contact](#contact)
+- [✨ Features](#-features)
+- [🛠 Technologies Used](#-technologies-used)
+- [🚀 Installation](#-installation)
+- [📸 Screenshots](#-screenshots)
+- [📬 Contact](#-contact)
 
 ## ✨ Features 
 - **User Authentication:** Login function with password-based access control for students.
